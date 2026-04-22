@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { QrCode, MousePointerClick, Smartphone, Apple } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 
 export const revalidate = 0; // Disable caching for the dashboard
 
@@ -100,11 +100,9 @@ export default async function DashboardPage() {
                     <TableCell>{new Date(qr.created_at).toLocaleDateString('pt-BR')}</TableCell>
                     <TableCell className="text-right">{scansByQr[qr.id] || 0}</TableCell>
                     <TableCell className="text-right">
-                      <Button asChild variant="ghost" size="sm">
-                        <Link href={`/dashboard/${qr.id}`}>
-                          Ver Detalhes
-                        </Link>
-                      </Button>
+                      <Link href={`/dashboard/${qr.id}`} className={buttonVariants({ variant: "ghost", size: "sm" })}>
+                        Ver Detalhes
+                      </Link>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -113,9 +111,7 @@ export default async function DashboardPage() {
           ) : (
             <div className="text-center py-12">
               <p className="text-muted-foreground mb-4">Nenhum QR Code criado ainda.</p>
-              <Button asChild>
-                <Link href="/dashboard/novo">Criar Primeiro QR Code</Link>
-              </Button>
+              <Link href="/dashboard/novo" className={buttonVariants()}>Criar Primeiro QR Code</Link>
             </div>
           )}
         </CardContent>

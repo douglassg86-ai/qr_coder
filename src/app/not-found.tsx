@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import { FileQuestion } from 'lucide-react';
 
 export default function NotFound() {
@@ -14,9 +14,7 @@ export default function NotFound() {
           O link que você tentou acessar não existe ou foi removido.
         </p>
         <div className="mt-8">
-          <Button asChild>
-            <Link href="/">Voltar ao Início</Link>
-          </Button>
+          <Link href="/" className={buttonVariants()}>Voltar ao Início</Link>
         </div>
       </div>
     </div>
